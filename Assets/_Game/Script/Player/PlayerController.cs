@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,13 +16,32 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         IsGround();
+        
+        if (!_states.IsGround && _rg2D.velocity.y < 0f)
+        {
+            FallHandle();
+            Debug.Log("Fall");
+        }
 
         MoveHandle();
+
+        AnimationHandle();
     }
 
     #endregion
 
     #region --- Methods ---
+
+    public void GetMoveAxis(InputAction.CallbackContext context)
+    {
+        _dir = context.ReadValue<float>();
+    }
+
+    public void GetButtonJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && _states.IsGround)
+            JumpHandle();
+    }
 
     private void IsGround()
     {
@@ -37,18 +57,61 @@ public class PlayerController : MonoBehaviour
 
     private void MoveHandle()
     {
-        float moveInput = Input.GetAxis("Horizontal");
-        if(moveInput != 0)
+        if (!_states.IsJumping && _states.IsGround)
+            _animTriggered = true;
+
+        
+        float sign = Mathf.Sign(_dir);
+        if (Mathf.Abs(_dir) > 0.1f)
         {
-            ChangeNameAnim("run");
-            _rg2D.velocity = new Vector2(moveInput * _stats.MovementSpeed, _rg2D.velocity.y);
-            gameObject.transform.rotation = Quaternion.Euler(0, moveInput > 0 ? 0 : 180, 0);
+            _currentSpeed = _stats.MovementSpeed;
+
+            gameObject.transform.rotation = Quaternion.Euler(0, _dir > 0 ? 0 : 180, 0);
         }
         else
         {
-            ChangeNameAnim("idle");
-            _rg2D.velocity = new Vector2(0, _rg2D.velocity.y);
+            _currentSpeed = 0f;
         }
+
+        _rg2D.velocity = new Vector2(_currentSpeed * sign, _rg2D.velocity.y);
+    }
+
+    private void JumpHandle()
+    {
+        _animTriggered = true;
+        _states.IsJumping = true;
+        _rg2D.AddForce(Vector2.up * _stats.JumpForce, ForceMode2D.Impulse);
+    }
+
+    private void FallHandle()
+    {
+        _animTriggered = true;
+        _states.IsJumping = false;
+    }
+
+    private void AnimationHandle()
+    {
+        if (!_animTriggered) return;
+
+        if (_states.IsGround && _states.IsJumping)
+        {
+            ChangeNameAnim("jump");
+        }
+        else if (!_states.IsGround && _rg2D.velocity.y < -0.1f)
+        {
+            ChangeNameAnim("fall");
+        }
+        else if (Mathf.Abs(_rg2D.velocity.x) > 0.1f && _states.IsGround)
+        {
+            ChangeNameAnim("run");
+        }
+        else if(_states.IsGround)
+        {
+            ChangeNameAnim("idle");
+        }
+        
+
+        _animTriggered = false;
     }
 
     private void ChangeNameAnim(string nameAnim)
@@ -74,7 +137,10 @@ public class PlayerController : MonoBehaviour
     private PlayerStates _states;
     private PlayerStatsSO _stats;
 
+    private float _currentSpeed = 0f;
+    private float _dir = 0f;
     private string _currentAnimName = "";
+    private bool _animTriggered = false;
 
     #endregion
 }

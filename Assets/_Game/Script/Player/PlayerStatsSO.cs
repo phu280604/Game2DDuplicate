@@ -9,6 +9,16 @@ public class PlayerStatsSO : StatsSO
 
     public float MaxHealthPoint => _maxHealthPoint;
     public float MovementSpeed => _movementSpeed;
+    public float Acceleration => _acceleration;
+
+    public float JumpForce => _jumpForce;
+
+    #endregion
+
+    #region --- Fields ---
+    [SerializeField] private float _acceleration;
+
+    [SerializeField] private float _jumpForce;
 
     #endregion
 }

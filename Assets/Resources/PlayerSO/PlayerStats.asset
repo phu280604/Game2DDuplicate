@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoint: 10
   _movementSpeed: 10
+  _acceleration: 0.2
+  _jumpForce: 5
