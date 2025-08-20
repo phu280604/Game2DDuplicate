@@ -2417,11 +2417,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!95 &2087250753 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7312766501189235164, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-  m_PrefabInstance: {fileID: 6794179424735505510}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6794179424735505510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2433,14 +2428,6 @@ PrefabInstance:
     - target: {fileID: 860597514559854474, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2818068572055689665, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2818068572055689665, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3243909226469123099, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2485,44 +2472,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 860597514559854474, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6794179424735505512}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
---- !u!1 &6794179424735505511 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 860597514559854474, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-  m_PrefabInstance: {fileID: 6794179424735505510}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6794179424735505512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6794179424735505511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c92401af929eaf4fa0f207667ff07f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rg2D: {fileID: 6794179424735505514}
-  _col2D: {fileID: 6794179424735505513}
-  _anim: {fileID: 2087250753}
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!70 &6794179424735505513 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 8569372507990771998, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-  m_PrefabInstance: {fileID: 6794179424735505510}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &6794179424735505514 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 2818068572055689665, guid: 66c82aa64f68895459d56be3b5405583, type: 3}
-  m_PrefabInstance: {fileID: 6794179424735505510}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
