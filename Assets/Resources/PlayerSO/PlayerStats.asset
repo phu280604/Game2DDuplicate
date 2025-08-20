@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   _maxHealthPoint: 10
-  _movementSpeed: 5
+  _movementSpeed: 10
