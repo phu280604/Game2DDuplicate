@@ -43,6 +43,17 @@ public class PlayerController : MonoBehaviour
             JumpHandle();
     }
 
+    public void GetButtonAttack(InputAction.CallbackContext context)
+    {
+        if(context.performed && _states.IsGround)
+        {
+            
+            ChangeNameAnim("attack");
+
+            Debug.Log("Attack performed");
+        }
+    }
+
     private void IsGround()
     {
         Vector3 point = gameObject.transform.localPosition;
@@ -57,10 +68,17 @@ public class PlayerController : MonoBehaviour
 
     private void MoveHandle()
     {
+        _states.IsAttacking = _anim.GetBool("isAttack");
+
+        if(_states.IsAttacking)
+        {
+            _currentSpeed = 0f;
+            return;
+        }
+
         if (!_states.IsJumping && _states.IsGround)
             _animTriggered = true;
 
-        
         float sign = Mathf.Sign(_dir);
         if (Mathf.Abs(_dir) > 0.1f)
         {

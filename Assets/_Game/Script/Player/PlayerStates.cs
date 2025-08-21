@@ -8,6 +8,7 @@ public class PlayerStates
 
     public bool IsGround { get; set; } = false;
     public bool IsJumping { get; set; } = false;
+    public bool IsAttacking { get; set; } = false;
 
     #endregion
 }
