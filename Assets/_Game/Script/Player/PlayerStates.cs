@@ -6,6 +6,8 @@ public class PlayerStates
 {
     #region --- Properties ---
 
+    public float Dir { get; set; }
+
     public bool IsGround { get; set; } = false;
     public bool IsJumping { get; set; } = false;
     public bool IsAttacking { get; set; } = false;

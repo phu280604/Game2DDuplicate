@@ -3,38 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IStateController<BaseState<PlayerController, PlayerStateFactory>>
 {
+    #region --- Overrides ---
+
+    public BaseState<PlayerController, PlayerStateFactory> CurrentState { get; set; }
+
+    #endregion
+
     #region --- Unity Methods ---
 
-    private void Start()
+    private void Awake()
     {
-        _states = new PlayerStates();
-        _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
+        OnInit();
     }
 
     private void FixedUpdate()
     {
         IsGround();
-        
-        if (!_states.IsGround && _rg2D.velocity.y < 0f)
-        {
-            FallHandle();
-            Debug.Log("Fall");
-        }
 
-        MoveHandle();
+        CurrentState.Execute();
 
-        AnimationHandle();
+        //if (!_states.IsGround && _rg2D.velocity.y < 0f)
+        //{
+        //    FallHandle();
+        //    Debug.Log("Fall");
+        //}
+
+        //AnimationHandle();
     }
 
     #endregion
 
     #region --- Methods ---
 
+    private void OnInit()
+    {
+        _states = new PlayerStates();
+        _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
+
+        _stateFactory = new PlayerStateFactory(this);
+        CurrentState = _stateFactory.IdleState();
+    }
+
     public void GetMoveAxis(InputAction.CallbackContext context)
     {
-        _dir = context.ReadValue<float>();
+        _states.Dir = context.ReadValue<float>();
+        Debug.Log($"Move Axis: {_states.Dir}");
     }
 
     public void GetButtonJump(InputAction.CallbackContext context)
@@ -45,13 +60,13 @@ public class PlayerController : MonoBehaviour
 
     public void GetButtonAttack(InputAction.CallbackContext context)
     {
-        if(context.performed && _states.IsGround)
-        {
+        //if(context.performed && _states.IsGround)
+        //{
             
-            ChangeNameAnim("attack");
+        //    ChangeNameAnim("attack");
 
-            Debug.Log("Attack performed");
-        }
+        //    Debug.Log("Attack performed");
+        //}
     }
 
     private void IsGround()
@@ -64,34 +79,6 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, _groundLayerMask);
 
         _states.IsGround = hit.collider != null;
-    }
-
-    private void MoveHandle()
-    {
-        _states.IsAttacking = _anim.GetBool("isAttack");
-
-        if(_states.IsAttacking)
-        {
-            _currentSpeed = 0f;
-            return;
-        }
-
-        if (!_states.IsJumping && _states.IsGround)
-            _animTriggered = true;
-
-        float sign = Mathf.Sign(_dir);
-        if (Mathf.Abs(_dir) > 0.1f)
-        {
-            _currentSpeed = _stats.MovementSpeed;
-
-            gameObject.transform.rotation = Quaternion.Euler(0, _dir > 0 ? 0 : 180, 0);
-        }
-        else
-        {
-            _currentSpeed = 0f;
-        }
-
-        _rg2D.velocity = new Vector2(_currentSpeed * sign, _rg2D.velocity.y);
     }
 
     private void JumpHandle()
@@ -132,7 +119,7 @@ public class PlayerController : MonoBehaviour
         _animTriggered = false;
     }
 
-    private void ChangeNameAnim(string nameAnim)
+    public void ChangeNameAnim(string nameAnim)
     {
         if(_currentAnimName != nameAnim)
         {
@@ -144,6 +131,17 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region --- Properties ---
+
+    public Rigidbody2D Rg2D => _rg2D;
+    public Collider2D Col2D => _col2D;
+    public Animator Anim => _anim;
+
+    public PlayerStates States => _states;
+    public PlayerStatsSO Stats => _stats;
+
+    #endregion
+
     #region --- Fields ---
 
     [SerializeField] private Rigidbody2D _rg2D;
@@ -152,11 +150,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask _groundLayerMask;
 
+    private PlayerStateFactory _stateFactory;
     private PlayerStates _states;
     private PlayerStatsSO _stats;
 
-    private float _currentSpeed = 0f;
-    private float _dir = 0f;
     private string _currentAnimName = "";
     private bool _animTriggered = false;
 
