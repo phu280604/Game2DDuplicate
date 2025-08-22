@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStates
+public class EnemyStates
 {
     #region --- Properties ---
 
-    public float Dir { get; set; }
+    public Vector2 AnchorPos { get; set; }
 
     public bool IsGround { get; set; } = false;
     public bool IsJumping { get; set; } = false;

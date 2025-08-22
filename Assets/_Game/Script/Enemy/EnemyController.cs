@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IStateController<BaseState<PlayerController, PlayerStateFactory>>
+public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyController, EnemyController>>
 {
     #region --- Overrides ---
 
-    public BaseState<PlayerController, PlayerStateFactory> CurrentState { get; set; }
+    public BaseState<EnemyController, EnemyController> CurrentState { get; set; }
 
     #endregion
 
@@ -32,11 +32,11 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
 
     private void OnInit()
     {
-        _states = new PlayerStates();
-        _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
+        _states = new EnemyStates();
+        _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
 
-        _stateFactory = new PlayerStateFactory(this);
-        CurrentState = _stateFactory.IdleState();
+        _fac = new EnemyStateFactory(this);
+        
     }
 
     private void IsGround()
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
         if (_states.IsGround)
         {
             _states.JumpTriggered = false;
+            _states.AnchorPos = transform.position;
         }
     }
 
@@ -69,8 +70,8 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
     public Collider2D Col2D => _col2D;
     public Animator Anim => _anim;
 
-    public PlayerStates States => _states;
-    public PlayerStatsSO Stats => _stats;
+    public EnemyStates States => _states;
+    public EnemyStatsSO Stats => _stats;
 
     #endregion
 
@@ -82,9 +83,9 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
 
     [SerializeField] private LayerMask _groundLayerMask;
 
-    private PlayerStateFactory _stateFactory;
-    private PlayerStates _states;
-    private PlayerStatsSO _stats;
+    private EnemyStateFactory _fac;
+    private EnemyStates _states;
+    private EnemyStatsSO _stats;
 
     #endregion
 }

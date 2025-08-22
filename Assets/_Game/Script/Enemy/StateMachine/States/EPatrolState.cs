@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunState : BaseState<PlayerController, PlayerStateFactory>
+public class EPatrolState : BaseState<PlayerController, PlayerStateFactory>
 {
-    public RunState(PlayerController context, PlayerStateFactory stateFactory) : base(context, stateFactory) { }
+    public EPatrolState(PlayerController context, PlayerStateFactory stateFactory) : base(context, stateFactory) { }
 
     #region --- Overrides ---
 
-    protected override void Enter() 
+    protected override void Enter()
     {
         if (!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
             Ctrl.Anim.Play("Run");

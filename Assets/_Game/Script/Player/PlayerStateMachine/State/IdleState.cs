@@ -8,9 +8,10 @@ public class IdleState : BaseState<PlayerController, PlayerStateFactory>
 
     #region --- Overrides ---
 
-    protected override void Enter()
+    protected override void Enter() 
     {
-        Ctrl.ChangeNameAnim("idle");
+        if(!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
+            Ctrl.Anim.Play("Idle");
     }
 
     public override void Execute()
@@ -20,17 +21,27 @@ public class IdleState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    protected override void Exit()
-    {
-        
-    }
+    protected override void Exit() { }
+
 
     protected override void CheckSwitchState()
     {
-        if(Mathf.Abs(Ctrl.States.Dir) > 0.1f)
+        if (Ctrl.States.IsAttacking)
         {
-            SwitchState(Fac.RunState());
+            SwitchState(Fac.MeleeAttackState());
+            return;
         }
+
+        if (!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.1f)
+        {
+            SwitchState(Fac.FallState());
+            return;
+        }
+
+        if (Ctrl.States.IsJumping && !Ctrl.States.JumpTriggered)
+            SwitchState(Fac.JumpState());
+        else if(Mathf.Abs(Ctrl.States.Dir) > 0.1f)
+            SwitchState(Fac.RunState());
     }
 
     #endregion
