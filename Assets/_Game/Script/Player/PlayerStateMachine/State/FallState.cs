@@ -8,7 +8,7 @@ public class FallState : BaseState<PlayerController, PlayerStateFactory>
 
     #region --- Overrides ---
 
-    protected override void Enter() 
+    public override void Enter() 
     {
         Ctrl.Anim.Play("JumpOut");
 
@@ -21,7 +21,7 @@ public class FallState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    protected override void Exit() { }
+    public override void Exit() { }
 
     protected override void CheckSwitchState()
     {

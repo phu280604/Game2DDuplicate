@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyController, EnemyController>>
+public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyController, EnemyStateFactory>>
 {
     #region --- Overrides ---
 
-    public BaseState<EnemyController, EnemyController> CurrentState { get; set; }
+    public BaseState<EnemyController, EnemyStateFactory> CurrentState { get; set; }
 
     #endregion
 
@@ -36,7 +36,9 @@ public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyCo
         _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
 
         _fac = new EnemyStateFactory(this);
-        
+        CurrentState = _fac.IdleState();
+        CurrentState.Enter();
+
     }
 
     private void IsGround()
@@ -53,7 +55,7 @@ public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyCo
         if (_states.IsGround)
         {
             _states.JumpTriggered = false;
-            _states.AnchorPos = transform.position;
+            _states.AnchorPos = transform.position.x;
         }
     }
 

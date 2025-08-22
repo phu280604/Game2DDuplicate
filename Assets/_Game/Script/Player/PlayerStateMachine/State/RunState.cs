@@ -8,7 +8,7 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
 
     #region --- Overrides ---
 
-    protected override void Enter() 
+    public override void Enter() 
     {
         if (!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
             Ctrl.Anim.Play("Run");
@@ -21,7 +21,7 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    protected override void Exit() { }
+    public override void Exit() { }
 
     protected override void CheckSwitchState()
     {

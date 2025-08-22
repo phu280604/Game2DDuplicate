@@ -8,7 +8,7 @@ public class JumpState : BaseState<PlayerController, PlayerStateFactory>
 
     #region --- Overrides ---
 
-    protected override void Enter()
+    public override void Enter()
     {
         Ctrl.Anim.Play("Jump");
         Ctrl.States.JumpTriggered = true;
@@ -21,7 +21,7 @@ public class JumpState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    protected override void Exit()
+    public override void Exit()
     {
         
     }

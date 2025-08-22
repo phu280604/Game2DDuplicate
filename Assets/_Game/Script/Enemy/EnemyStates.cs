@@ -6,7 +6,8 @@ public class EnemyStates
 {
     #region --- Properties ---
 
-    public Vector2 AnchorPos { get; set; }
+    public float AnchorPos { get; set; }
+    public float Dir { get; set; } = 1f;
 
     public bool IsGround { get; set; } = false;
     public bool IsJumping { get; set; } = false;

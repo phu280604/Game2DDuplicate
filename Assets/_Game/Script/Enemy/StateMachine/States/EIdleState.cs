@@ -2,38 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EIdleState : BaseState<PlayerController, PlayerStateFactory>
+public class EIdleState : BaseState<EnemyController, EnemyStateFactory>
 {
-    public EIdleState(PlayerController context, PlayerStateFactory stateFactory) : base(context, stateFactory) { }
+    public EIdleState(EnemyController context, EnemyStateFactory stateFactory) : base(context, stateFactory) { }
 
     #region --- Overrides ---
 
-    protected override void Enter()
+    public override void Enter()
     {
+        time = 0f;
+        idleTime = Random.Range(2, 5);
         Ctrl.Anim.Play("Idle");
     }
 
     public override void Execute()
     {
         Ctrl.Rg2D.velocity = new Vector2(0f, Ctrl.Rg2D.velocity.y);
-
+        time += Time.fixedDeltaTime;
         CheckSwitchState();
     }
 
-    protected override void Exit() { }
+    public override void Exit() 
+    {
+        Ctrl.States.Dir *= -1;
+    }
 
 
     protected override void CheckSwitchState()
     {
-        if (Ctrl.States.IsAttacking)
+        if(time >= idleTime)
         {
-            SwitchState(Fac.MeleeAttackState());
-            return;
+            SwitchState(Fac.PatrolState());
+            Debug.Log("Switch to Patrol State");
         }
-
-        if (Mathf.Abs(Ctrl.States.Dir) > 0.1f)
-            SwitchState(Fac.RunState());
     }
+
+    #endregion
+
+    #region --- Fields ---
+
+    private float time;
+    private float idleTime;
 
     #endregion
 }

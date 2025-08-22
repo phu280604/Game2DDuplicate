@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EPatrolState : BaseState<PlayerController, PlayerStateFactory>
+public class EPatrolState : BaseState<EnemyController, EnemyStateFactory>
 {
-    public EPatrolState(PlayerController context, PlayerStateFactory stateFactory) : base(context, stateFactory) { }
+    public EPatrolState(EnemyController context, EnemyStateFactory stateFactory) : base(context, stateFactory) { }
 
     #region --- Overrides ---
 
-    protected override void Enter()
+    public override void Enter()
     {
-        if (!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
-            Ctrl.Anim.Play("Run");
+        Ctrl.Anim.Play("Run");
+
+        Ctrl.transform.rotation = Quaternion.Euler(0, Ctrl.States.Dir < 0 ? 180 : 0, 0);
+
+        anchorNext = Ctrl.States.AnchorPos + (Ctrl.Stats.PatrolRange * Ctrl.States.Dir);
     }
 
     public override void Execute()
@@ -21,26 +25,15 @@ public class EPatrolState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    protected override void Exit() { }
+    public override void Exit() { }
 
     protected override void CheckSwitchState()
     {
-        if (Ctrl.States.IsAttacking)
+        float checkLength = CheckLength();
+        if (checkLength <= 0.3f)
         {
-            SwitchState(Fac.MeleeAttackState());
-            return;
-        }
-
-        if (!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.1f)
-        {
-            SwitchState(Fac.FallState());
-            return;
-        }
-
-        if (Ctrl.States.IsJumping && !Ctrl.States.JumpTriggered)
-            SwitchState(Fac.JumpState());
-        else if (Mathf.Abs(Ctrl.States.Dir) < 0.1f)
             SwitchState(Fac.IdleState());
+        }
     }
 
     #endregion
@@ -49,24 +42,21 @@ public class EPatrolState : BaseState<PlayerController, PlayerStateFactory>
 
     private void RunHandle()
     {
-        float sign = Mathf.Sign(Ctrl.States.Dir);
-        if (Mathf.Abs(Ctrl.States.Dir) > 0.1f)
-        {
-            _currentSpeed = Ctrl.Stats.MovementSpeed;
+        Ctrl.Rg2D.velocity = new Vector2(Ctrl.States.Dir * Ctrl.Stats.MovementSpeed, Ctrl.Rg2D.velocity.y);
+    }
 
-            Ctrl.transform.rotation = Quaternion.Euler(0, Ctrl.States.Dir > 0 ? 0 : 180, 0);
-        }
-        else
-            _currentSpeed = 0f;
+    private float CheckLength()
+    {
+        float curPos = Ctrl.transform.position.x;
 
-        Ctrl.Rg2D.velocity = new Vector2(_currentSpeed * sign, Ctrl.Rg2D.velocity.y);
+        return Mathf.Sqrt(Mathf.Pow(anchorNext - curPos, 2));
     }
 
     #endregion
 
     #region --- Fields ---
 
-    private float _currentSpeed;
+    private float anchorNext;
 
     #endregion
 }

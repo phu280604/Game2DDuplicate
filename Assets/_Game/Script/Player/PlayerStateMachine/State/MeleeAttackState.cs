@@ -8,7 +8,7 @@ public class MeleeAttackState: BaseState<PlayerController, PlayerStateFactory>
 
     #region --- Overrides ---
 
-    protected override void Enter() 
+    public override void Enter() 
     {
         Ctrl.Anim.Play("MeleeAttack1");
         StopMoving();
@@ -20,7 +20,7 @@ public class MeleeAttackState: BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    protected override void Exit() 
+    public override void Exit() 
     {
         Ctrl.States.IsAttacking = false;
     }

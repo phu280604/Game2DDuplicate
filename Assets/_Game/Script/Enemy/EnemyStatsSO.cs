@@ -10,6 +10,7 @@ public class EnemyStatsSO : StatsSO
     public float MaxHealthPoint => _maxHealthPoint;
     public float MovementSpeed => _movementSpeed;
 
+    public float PatrolRange => patrolRange;
 
     #endregion
 

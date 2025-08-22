@@ -12,9 +12,9 @@ public abstract class BaseState<T, U> where T : IStateController<BaseState<T, U>
 
     #region --- Methods ---
 
-    protected abstract void Enter();
+    public abstract void Enter();
     public abstract void Execute();
-    protected abstract void Exit();
+    public abstract void Exit();
     protected abstract void CheckSwitchState();
     protected void SwitchState(BaseState<T, U> newState)
     {

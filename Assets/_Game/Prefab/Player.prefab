@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 776713032353631450}
   - component: {fileID: 5274217765469744440}
   - component: {fileID: 2492441296313697821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 5741741570823225488}
   - component: {fileID: 1621267587200911615}
   - component: {fileID: 7312766501189235164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,8 +279,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -163759173
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a4e87428ca722e04bbb899868e14e94a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 410820938117946927}
   - component: {fileID: 396623146915806864}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

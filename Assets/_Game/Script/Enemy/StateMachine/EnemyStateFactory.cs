@@ -12,7 +12,9 @@ public class EnemyStateFactory
 
     #region --- Methods ---
 
-    
+    public BaseState<EnemyController, EnemyStateFactory> IdleState() => new EIdleState(_ctrl, this);
+
+    internal BaseState<EnemyController, EnemyStateFactory> PatrolState() => new EPatrolState(_ctrl, this);
 
     #endregion
 
