@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IStateController<BaseState<PlayerController, PlayerStateFactory>>
+public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyController, EnemyStateFactory>>
 {
     #region --- Overrides ---
 
-    public BaseState<PlayerController, PlayerStateFactory> CurrentState { get; set; }
+    public BaseState<EnemyController, EnemyStateFactory> CurrentState { get; set; }
 
     #endregion
 
@@ -21,7 +21,12 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
     private void FixedUpdate()
     {
         IsGround();
-        GetValueAnim();
+
+        bool tmp = _detectTool.OnDetecting(_stats.DetectRange, _targetLayer);
+        if(tmp)
+        {
+            Debug.Log("Detect Player");
+        }
 
         CurrentState.Execute();
     }
@@ -32,11 +37,13 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
 
     private void OnInit()
     {
-        _states = new PlayerStates();
-        _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
+        _states = new EnemyStates();
+        _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
 
-        _stateFactory = new PlayerStateFactory(this);
-        CurrentState = _stateFactory.IdleState();
+        _fac = new EnemyStateFactory(this);
+        CurrentState = _fac.IdleState();
+        CurrentState.Enter();
+
     }
 
     private void IsGround()
@@ -53,12 +60,8 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
         if (_states.IsGround)
         {
             _states.JumpTriggered = false;
+            _states.AnchorPos = transform.position.x;
         }
-    }
-
-    private void GetValueAnim()
-    {
-        _states.AttackTriggered = _anim.GetBool("isAttack");
     }
 
     #endregion
@@ -69,8 +72,8 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
     public Collider2D Col2D => _col2D;
     public Animator Anim => _anim;
 
-    public PlayerStates States => _states;
-    public PlayerStatsSO Stats => _stats;
+    public EnemyStates States => _states;
+    public EnemyStatsSO Stats => _stats;
 
     #endregion
 
@@ -80,11 +83,13 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
     [SerializeField] private Collider2D _col2D;
     [SerializeField] private Animator _anim;
 
-    [SerializeField] private LayerMask _groundLayerMask;
+    private EnemyStateFactory _fac;
+    private EnemyStates _states;
+    private EnemyStatsSO _stats;
+    [SerializeField] private EnemyDetect _detectTool;
 
-    private PlayerStateFactory _stateFactory;
-    private PlayerStates _states;
-    private PlayerStatsSO _stats;
+    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private LayerMask _targetLayer;
 
     #endregion
 }

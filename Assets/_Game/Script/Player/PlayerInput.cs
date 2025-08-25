@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerInput : MonoBehaviour
+{
+    public void Start()
+    {
+        _ctrl = GetComponent<PlayerController>();
+    }
+
+    public void GetMoveAxis(InputAction.CallbackContext context)
+    {
+        _ctrl.States.Dir = context.ReadValue<float>();
+    }
+
+    public void GetButtonJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && _ctrl.States.IsGround)
+            _ctrl.States.IsJumping = true;
+    }
+
+    public void GetButtonAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed && _ctrl.States.IsGround)
+        {
+            _ctrl.States.IsAttacking = true;
+        }
+    }
+
+    #region --- Fields ---
+
+    private PlayerController _ctrl;
+
+    #endregion
+}
