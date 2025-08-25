@@ -15,3 +15,4 @@ MonoBehaviour:
   _maxHealthPoint: 100
   _movementSpeed: 12
   patrolRange: 10
+  detectRange: 8

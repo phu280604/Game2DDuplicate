@@ -21,7 +21,12 @@ public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyCo
     private void FixedUpdate()
     {
         IsGround();
-        GetValueAnim();
+
+        bool tmp = _detectTool.OnDetecting(_stats.DetectRange, _targetLayer);
+        if(tmp)
+        {
+            Debug.Log("Detect Player");
+        }
 
         CurrentState.Execute();
     }
@@ -59,11 +64,6 @@ public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyCo
         }
     }
 
-    private void GetValueAnim()
-    {
-        _states.AttackTriggered = _anim.GetBool("isAttack");
-    }
-
     #endregion
 
     #region --- Properties ---
@@ -83,11 +83,13 @@ public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyCo
     [SerializeField] private Collider2D _col2D;
     [SerializeField] private Animator _anim;
 
-    [SerializeField] private LayerMask _groundLayerMask;
-
     private EnemyStateFactory _fac;
     private EnemyStates _states;
     private EnemyStatsSO _stats;
+    [SerializeField] private EnemyDetect _detectTool;
+
+    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private LayerMask _targetLayer;
 
     #endregion
 }

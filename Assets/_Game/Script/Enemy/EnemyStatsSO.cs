@@ -11,12 +11,14 @@ public class EnemyStatsSO : StatsSO
     public float MovementSpeed => _movementSpeed;
 
     public float PatrolRange => patrolRange;
+    public float DetectRange => detectRange;
 
     #endregion
 
     #region --- fields ---
 
     [SerializeField] private float patrolRange;
+    [SerializeField] private float detectRange;
 
     #endregion
 }
