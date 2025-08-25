@@ -15,5 +15,7 @@ public class EnemyStates
     public bool IsAttacking { get; set; } = false;
     public bool AttackTriggered { get; set; } = false;
 
+    public bool IsDead { get; set; } = false;
+
     #endregion
 }

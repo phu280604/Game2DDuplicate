@@ -33,7 +33,6 @@ public class EIdleState : BaseState<EnemyController, EnemyStateFactory>
         if(time >= idleTime)
         {
             SwitchState(Fac.PatrolState());
-            Debug.Log("Switch to Patrol State");
         }
     }
 

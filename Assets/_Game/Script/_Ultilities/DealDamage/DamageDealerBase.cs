@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DamageDealer<T> : MonoBehaviour
+public abstract class DamageDealerBase<T> : MonoBehaviour
 {
     #region --- Methods ---
 
-    protected abstract void DealDamage(Collider target);
-    protected abstract void ReceiveDamage(float dmg);
+    public abstract void DealDamage(GameObject target);
+    public abstract void ReceiveDamage(float dmg);
+
+    protected bool CheckDeadFlag(float curHP)
+    {
+        return curHP <= 0;
+    }
 
     #endregion
 

@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
     {
         _states = new PlayerStates();
         _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
+        _stats.OnInit();
 
         _stateFactory = new PlayerStateFactory(this);
         CurrentState = _stateFactory.IdleState();

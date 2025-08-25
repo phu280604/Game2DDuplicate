@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDamageDealer : DamageDealerBase<PlayerController>
+public class EnemyDamageDealerBase : DamageDealerBase<EnemyController>
 {
     #region --- Overrides ---
 
     public override void DealDamage(GameObject target)
     {
-        target.GetComponent<EnemyDamageDealerBase>()?.ReceiveDamage(_ctrl.Stats.Damage);
+        target.GetComponent<PlayerDamageDealer>()?.ReceiveDamage(_ctrl.Stats.Damage);
     }
 
     public override void ReceiveDamage(float dmg)
     {
-        if(_ctrl.States.IsDead) return;
-
+        if (_ctrl.States.IsDead) return;
         _ctrl.Stats.CurrentHealthPoint -= dmg;
+
+        Debug.Log(_ctrl.name + " Received Damage: " + dmg + ", Current HP: " + _ctrl.Stats.CurrentHealthPoint);
 
         _ctrl.States.IsDead = CheckDeadFlag(_ctrl.Stats.CurrentHealthPoint);
     }
@@ -28,7 +29,7 @@ public class PlayerDamageDealer : DamageDealerBase<PlayerController>
     {
         int objLayer = collision.gameObject.layer;
 
-        // Kiem tra layer co nam trong LayerMask khong?
+        // Kiểm tra layer có nằm trong LayerMask không
         if ((_target.value & (1 << objLayer)) != 0)
         {
             DealDamage(collision.gameObject);

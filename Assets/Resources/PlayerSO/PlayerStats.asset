@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cc002e74c2c024fb78e16e7a5401b2, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  _maxHealthPoint: 10
-  _movementSpeed: 14
-  _acceleration: 0.2
+  _maxHealthPoint: 100
+  _movementSpeed: 16
+  _damage: 10
+  _acceleration: 0
   _jumpForce: 4

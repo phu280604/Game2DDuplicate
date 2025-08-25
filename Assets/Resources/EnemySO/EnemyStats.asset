@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoint: 100
   _movementSpeed: 12
+  _damage: 10
   patrolRange: 10
   detectRange: 8

@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyCo
     {
         _states = new EnemyStates();
         _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
+        _stats.OnInit();
 
         _fac = new EnemyStateFactory(this);
         CurrentState = _fac.IdleState();

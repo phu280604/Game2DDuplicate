@@ -10,6 +10,7 @@ public class PlayerStatsSO : StatsSO
     public float MaxHealthPoint => _maxHealthPoint;
     public float MovementSpeed => _movementSpeed;
     public float Acceleration => _acceleration;
+    public float Damage => _damage;
 
     public float JumpForce => _jumpForce;
 

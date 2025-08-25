@@ -12,6 +12,7 @@ public class EnemyStatsSO : StatsSO
 
     public float PatrolRange => patrolRange;
     public float DetectRange => detectRange;
+    public float Damage => _damage;
 
     #endregion
 

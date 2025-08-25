@@ -324,7 +324,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410820938117946927}
   - component: {fileID: 396623146915806864}
-  m_Layer: 7
+  - component: {fileID: 1051274712873020867}
+  m_Layer: 9
   m_Name: AttackHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +354,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854561700451300386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -392,3 +393,19 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1051274712873020867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854561700451300386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a85bce26a31e54eb18bbee42016592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target:
+    serializedVersion: 2
+    m_Bits: 256
+  _ctrl: {fileID: 776713032353631450}
