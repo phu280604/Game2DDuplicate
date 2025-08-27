@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EnemyController : MonoBehaviour, IStateController<BaseState<EnemyController, EnemyStateFactory>>
+public class EnemyController : BaseController<int, EnemyController>, IStateController<BaseState<EnemyController, EnemyStateFactory>>
 {
     #region --- Overrides ---
 
     public BaseState<EnemyController, EnemyStateFactory> CurrentState { get; set; }
+
+
 
     #endregion
 

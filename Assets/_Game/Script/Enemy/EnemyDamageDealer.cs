@@ -19,6 +19,7 @@ public class EnemyDamageDealerBase : DamageDealerBase<EnemyController>
         Debug.Log(_ctrl.name + " Received Damage: " + dmg + ", Current HP: " + _ctrl.Stats.CurrentHealthPoint);
 
         _ctrl.States.IsDead = CheckDeadFlag(_ctrl.Stats.CurrentHealthPoint);
+        _ctrl.NotifyObserver(LayerMask.NameToLayer("HealthBar"), _ctrl);
     }
 
     #endregion

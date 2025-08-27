@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IStateController<BaseState<PlayerController, PlayerStateFactory>>
+public class PlayerController : BaseController<int, PlayerController>, IStateController<BaseState<PlayerController, PlayerStateFactory>>
 {
     #region --- Overrides ---
 
@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour, IStateController<BaseState<Player
         _states = new PlayerStates();
         _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
         _stats.OnInit();
+
+
 
         _stateFactory = new PlayerStateFactory(this);
         CurrentState = _stateFactory.IdleState();
