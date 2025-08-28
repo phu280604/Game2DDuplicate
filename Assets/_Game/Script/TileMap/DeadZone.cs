@@ -38,7 +38,6 @@ public class DeadZone : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        Debug.Log("Respawn Player");
         _ctrl.OnInit();
         _timer = _respawnTime;
         _isRespawning = false;

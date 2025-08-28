@@ -58,7 +58,6 @@ public class HealthBar : MonoBehaviour, IObserver<EnemyController>, IObserver<Pl
     }
     private void ChangeHealthBar()
     {
-        Debug.Log(_curHealth / _maxHealth);
         _healthBar.value = Mathf.Lerp(_healthBar.value, _curHealth / _maxHealth, Time.deltaTime * 5f);
     }
 
