@@ -37,7 +37,10 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         if(_states == null)
             _states = new PlayerStates();
         else
-            _states.OnInit(gameObject);
+        {
+            _states.OnInit(gameObject); 
+            IsGround();
+        }
 
         // Stats.
         if (_stats == null)

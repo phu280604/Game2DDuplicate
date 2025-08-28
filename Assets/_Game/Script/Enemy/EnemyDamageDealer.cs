@@ -19,7 +19,7 @@ public class EnemyDamageDealerBase : DamageDealerBase<EnemyController>
         Debug.Log(_ctrl.name + " Received Damage: " + dmg + ", Current HP: " + _ctrl.Stats.CurrentHealthPoint);
 
         _ctrl.States.IsDead = CheckDeadFlag(_ctrl.Stats.CurrentHealthPoint);
-        _ctrl.NotifyObserver(LayerMask.NameToLayer(_healthBarLayerName), _ctrl);
+        _ctrl.NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), _ctrl);
     }
 
     #endregion
@@ -36,12 +36,6 @@ public class EnemyDamageDealerBase : DamageDealerBase<EnemyController>
             DealDamage(collision.gameObject);
         }
     }
-
-    #endregion
-
-    #region --- Fields ---
-
-    [SerializeField] private string _healthBarLayerName;
 
     #endregion
 }

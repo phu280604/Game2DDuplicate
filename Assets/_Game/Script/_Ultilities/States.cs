@@ -7,8 +7,8 @@ public class States
     #region --- Properties ---
 
     public Vector2 SavePoint { get; set; }
-    public float Dir { get; set; }
-    public bool IsGround { get; set; }
+    public float Dir { get; set; } = 1f;
+    public bool IsGround { get; set; } = false;
     public bool IsDead { get; set; }
 
     #endregion
@@ -22,10 +22,7 @@ public class States
         else
             SavePoint = target.transform.position;
 
-
         IsDead = false;
-        IsGround = false;
-        Dir = 1f;
     }
 
     #endregion
