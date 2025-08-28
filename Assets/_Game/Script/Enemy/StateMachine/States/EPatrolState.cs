@@ -15,7 +15,7 @@ public class EPatrolState : BaseState<EnemyController, EnemyStateFactory>
 
         Ctrl.transform.rotation = Quaternion.Euler(0, Ctrl.States.Dir < 0 ? 180 : 0, 0);
 
-        anchorNext = Ctrl.States.AnchorPos + (Ctrl.Stats.PatrolRange * Ctrl.States.Dir);
+        anchorNext = Ctrl.States.SavePoint.x + (Ctrl.Stats.PatrolRange * Ctrl.States.Dir);
     }
 
     public override void Execute()

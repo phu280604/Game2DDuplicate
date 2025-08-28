@@ -39,10 +39,15 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
 
     private void OnInit()
     {
+        // States.
         _states = new EnemyStates();
+        _states.OnInit(this.gameObject);
+
+        // Stats.
         _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
         _stats.OnInit();
 
+        // Finite State Machine.
         _fac = new EnemyStateFactory(this);
         CurrentState = _fac.IdleState();
         CurrentState.Enter();
@@ -62,8 +67,7 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
 
         if (_states.IsGround)
         {
-            _states.JumpTriggered = false;
-            _states.AnchorPos = transform.position.x;
+            _states.SavePoint = transform.position;
         }
     }
 

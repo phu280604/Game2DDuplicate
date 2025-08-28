@@ -12,6 +12,7 @@ public class IdleState : BaseState<PlayerController, PlayerStateFactory>
     {
         if(!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
             Ctrl.Anim.Play("Idle");
+        Ctrl.States.Dir = 0f;
     }
 
     public override void Execute()

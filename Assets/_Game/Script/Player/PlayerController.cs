@@ -24,22 +24,38 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         GetValueAnim();
 
         CurrentState.Execute();
+        Debug.Log(CurrentState.GetType().Name);
     }
 
     #endregion
 
     #region --- Methods ---
 
-    private void OnInit()
+    public void OnInit()
     {
-        _states = new PlayerStates();
-        _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
+        // States.
+        if(_states == null)
+            _states = new PlayerStates();
+        else
+            _states.OnInit(gameObject);
+
+        // Stats.
+        if (_stats == null)
+            _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
         _stats.OnInit();
 
-
-
-        _stateFactory = new PlayerStateFactory(this);
+        // Finite State Machine.
+        if (_stateFactory == null)
+            _stateFactory = new PlayerStateFactory(this);
         CurrentState = _stateFactory.IdleState();
+        CurrentState.Enter();
+    }
+
+    public void OnDespawn()
+    {
+        _states.IsDead = true;
+        _stats.CurrentHealthPoint = 0;
+        NotifyObserver(LayerMask.NameToLayer("HealthBar"), this);
     }
 
     private void IsGround()
