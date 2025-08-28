@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour, IObserver<EnemyController>, IObserver<Pl
 
     public void OnNotify(PlayerController value)
     {
-        
+        Debug.Log("Player Health: " + value.Stats.CurrentHealthPoint);
         _curHealth = value.Stats.CurrentHealthPoint;
     }
 
@@ -52,13 +52,14 @@ public class HealthBar : MonoBehaviour, IObserver<EnemyController>, IObserver<Pl
         }
         else if (playerCtrl != null)
         {
-            playerCtrl.AddObserver(LayerMask.GetMask("HealthBar"), this);
+            playerCtrl.AddObserver(LayerMask.NameToLayer("HealthBar"), this);
             _maxHealth = playerCtrl.Stats.MaxHealthPoint;
             _curHealth = _maxHealth;
         }
     }
     private void ChangeHealthBar()
     {
+        Debug.Log(_curHealth / _maxHealth);
         _healthBar.value = Mathf.Lerp(_healthBar.value, _curHealth / _maxHealth, Time.deltaTime * 5f);
     }
 

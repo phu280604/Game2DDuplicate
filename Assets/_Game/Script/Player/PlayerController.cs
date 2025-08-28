@@ -24,7 +24,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         GetValueAnim();
 
         CurrentState.Execute();
-        Debug.Log(CurrentState.GetType().Name);
+        //Debug.Log(CurrentState.GetType().Name);
     }
 
     #endregion
@@ -43,6 +43,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         if (_stats == null)
             _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
         _stats.OnInit();
+        NotifyObserver(LayerMask.NameToLayer("HealthBar"), this);
 
         // Finite State Machine.
         if (_stateFactory == null)
