@@ -43,7 +43,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         if (_stats == null)
             _stats = Resources.Load<PlayerStatsSO>("PlayerSO/PlayerStats");
         _stats.OnInit();
-        NotifyObserver(LayerMask.NameToLayer("HealthBar"), this);
+        NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), this);
 
         // Finite State Machine.
         if (_stateFactory == null)
@@ -56,7 +56,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     {
         _states.IsDead = true;
         _stats.CurrentHealthPoint = 0;
-        NotifyObserver(LayerMask.NameToLayer("HealthBar"), this);
+        NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), this);
     }
 
     private void IsGround()

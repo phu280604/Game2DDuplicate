@@ -18,6 +18,7 @@ public class PlayerDamageDealer : DamageDealerBase<PlayerController>
         _ctrl.Stats.CurrentHealthPoint -= dmg;
 
         _ctrl.States.IsDead = CheckDeadFlag(_ctrl.Stats.CurrentHealthPoint);
+        _ctrl.NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), _ctrl);
     }
 
     #endregion

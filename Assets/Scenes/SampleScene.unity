@@ -1842,6 +1842,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 936930059}
     m_Modifications:
+    - target: {fileID: 192235166000213665, guid: 1b5d9138ffa5e5548921be82a2488479, type: 3}
+      propertyPath: _healthBarLayerName
+      value: HealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 4262283123457586513, guid: 1b5d9138ffa5e5548921be82a2488479, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7137,7 +7141,6 @@ GameObject:
   - component: {fileID: 2007699198}
   - component: {fileID: 2007699197}
   - component: {fileID: 2007699196}
-  - component: {fileID: 2007699195}
   - component: {fileID: 2007699194}
   m_Layer: 31
   m_Name: PlayerHealth
@@ -7181,23 +7184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 639955490}
   _healthBar: {fileID: 2007699196}
---- !u!114 &2007699195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007699192}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f8dab1e8c7d97f42b0be8f7f0d1f76a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetTag: Player
-  _target: {fileID: 0}
-  _offset: {x: 0, y: 2.3, z: 0}
-  _useSmooth: 0
-  _smoothSpeed: 0
 --- !u!114 &2007699196
 MonoBehaviour:
   m_ObjectHideFlags: 0

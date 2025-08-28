@@ -24,7 +24,7 @@ public class DeadZone : MonoBehaviour
     {
         _timer = _respawnTime;
         _isRespawning = true;
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(NameLayer.Player))
         {
             if(_ctrl == null)
                 _ctrl = collision.GetComponent<PlayerController>();

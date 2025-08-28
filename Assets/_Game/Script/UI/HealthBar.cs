@@ -17,7 +17,6 @@ public class HealthBar : MonoBehaviour, IObserver<EnemyController>, IObserver<Pl
 
     public void OnNotify(PlayerController value)
     {
-        Debug.Log("Player Health: " + value.Stats.CurrentHealthPoint);
         _curHealth = value.Stats.CurrentHealthPoint;
     }
 
@@ -46,13 +45,13 @@ public class HealthBar : MonoBehaviour, IObserver<EnemyController>, IObserver<Pl
 
         if(enemyCtrl != null)
         {
-            enemyCtrl.AddObserver(LayerMask.NameToLayer("HealthBar"), this);
+            enemyCtrl.AddObserver(LayerMask.NameToLayer(NameLayer.HealthBar), this);
             _maxHealth = enemyCtrl.Stats.MaxHealthPoint;
             _curHealth = _maxHealth;
         }
         else if (playerCtrl != null)
         {
-            playerCtrl.AddObserver(LayerMask.NameToLayer("HealthBar"), this);
+            playerCtrl.AddObserver(LayerMask.NameToLayer(NameLayer.HealthBar), this);
             _maxHealth = playerCtrl.Stats.MaxHealthPoint;
             _curHealth = _maxHealth;
         }
