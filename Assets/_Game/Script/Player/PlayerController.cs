@@ -35,7 +35,10 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     {
         // States.
         if(_states == null)
+        {
             _states = new PlayerStates();
+            _states.SavePoint = _baseSpawner.position;
+        }
         else
         {
             _states.OnInit(gameObject); 
@@ -69,7 +72,8 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
 
         Debug.DrawLine(point, point + Vector3.down * length, Color.green);
 
-        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, _groundLayerMask);
+        LayerMask mask = (1 << LayerMask.NameToLayer(NameLayer.Ground)) | (1 << LayerMask.NameToLayer(NameLayer.MovingPlatform));
+        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, mask);
 
         _states.IsGround = hit.collider != null;
 
@@ -103,7 +107,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     [SerializeField] private Collider2D _col2D;
     [SerializeField] private Animator _anim;
 
-    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private Transform _baseSpawner;
 
     private PlayerStateFactory _stateFactory;
     private PlayerStates _states;

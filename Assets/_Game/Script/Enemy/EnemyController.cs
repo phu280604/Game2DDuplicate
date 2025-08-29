@@ -22,8 +22,6 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
 
     private void FixedUpdate()
     {
-        IsGround();
-
         bool tmp = _detectTool.OnDetecting(_stats.DetectRange, _targetLayer);
         if(tmp)
         {
@@ -40,8 +38,15 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
     private void OnInit()
     {
         // States.
-        _states = new EnemyStates();
-        _states.OnInit(this.gameObject);
+        if (_states == null)
+        {
+            _states = new EnemyStates();
+            _states.SavePoint = _baseEnemy.transform.position;
+        }
+        else
+        {
+            _states.OnInit(_baseEnemy);
+        }
 
         // Stats.
         _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
@@ -51,24 +56,6 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
         _fac = new EnemyStateFactory(this);
         CurrentState = _fac.IdleState();
         CurrentState.Enter();
-
-    }
-
-    private void IsGround()
-    {
-        Vector3 point = gameObject.transform.localPosition;
-        float length = 1.9f;
-
-        Debug.DrawLine(point, point + Vector3.down * length, Color.green);
-
-        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, _groundLayerMask);
-
-        _states.IsGround = hit.collider != null;
-
-        if (_states.IsGround)
-        {
-            _states.SavePoint = transform.position;
-        }
     }
 
     #endregion
@@ -89,6 +76,8 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
     [SerializeField] private Rigidbody2D _rg2D;
     [SerializeField] private Collider2D _col2D;
     [SerializeField] private Animator _anim;
+
+    [SerializeField] private GameObject _baseEnemy;
 
     private EnemyStateFactory _fac;
     private EnemyStates _states;

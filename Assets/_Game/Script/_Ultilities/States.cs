@@ -18,9 +18,9 @@ public class States
     public void OnInit(GameObject target)
     {
         if (SavePoint != null)
+        {
             target.transform.position = (Vector3)SavePoint;
-        else
-            SavePoint = target.transform.position;
+        }
 
         IsDead = false;
     }
