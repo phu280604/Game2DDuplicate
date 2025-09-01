@@ -17,7 +17,6 @@ public class EIdleState : BaseState<EnemyController, EnemyStateFactory>
 
     public override void Execute()
     {
-        Ctrl.Rg2D.velocity = new Vector2(0f, Ctrl.Rg2D.velocity.y);
         time += Time.fixedDeltaTime;
         CheckSwitchState();
     }
@@ -27,10 +26,15 @@ public class EIdleState : BaseState<EnemyController, EnemyStateFactory>
         Ctrl.States.Dir *= -1;
     }
 
-
     protected override void CheckSwitchState()
     {
-        if(time >= idleTime)
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
+        if (time >= idleTime)
         {
             SwitchState(Fac.PatrolState());
         }

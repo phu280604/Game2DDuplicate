@@ -9,8 +9,6 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
 
     public BaseState<EnemyController, EnemyStateFactory> CurrentState { get; set; }
 
-
-
     #endregion
 
     #region --- Unity Methods ---

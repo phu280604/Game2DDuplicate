@@ -25,10 +25,19 @@ public class EPatrolState : BaseState<EnemyController, EnemyStateFactory>
         CheckSwitchState();
     }
 
-    public override void Exit() { }
+    public override void Exit() 
+    {
+        Ctrl.Rg2D.velocity = new Vector2(0f, Ctrl.Rg2D.velocity.y);
+    }
 
     protected override void CheckSwitchState()
     {
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
         float checkLength = CheckLength();
         if (checkLength <= 0.3f)
         {
