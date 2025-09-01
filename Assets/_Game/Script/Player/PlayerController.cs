@@ -24,7 +24,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         GetValueAnim();
 
         CurrentState.Execute();
-        Debug.Log(CurrentState.GetType().Name);
+        //Debug.Log(CurrentState.GetType().Name);
     }
 
     #endregion
