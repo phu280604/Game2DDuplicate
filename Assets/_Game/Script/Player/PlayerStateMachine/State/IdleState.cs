@@ -10,7 +10,8 @@ public class IdleState : BaseState<PlayerController, PlayerStateFactory>
 
     public override void Enter() 
     {
-        if(!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
+        if (Ctrl.States.IsAttacking || Ctrl.States.IsRangeAttacking) return;
+        if (Ctrl.States.IsGround)
             Ctrl.Anim.Play("Idle");
         Ctrl.States.Dir = 0f;
     }
@@ -36,6 +37,11 @@ public class IdleState : BaseState<PlayerController, PlayerStateFactory>
         if (Ctrl.States.IsAttacking)
         {
             SwitchState(Fac.MeleeAttackState());
+            return;
+        }
+        else if (Ctrl.States.IsRangeAttacking)
+        {
+            SwitchState(Fac.RangeAttackState());
             return;
         }
 

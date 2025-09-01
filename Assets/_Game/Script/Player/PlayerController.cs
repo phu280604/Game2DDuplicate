@@ -103,6 +103,9 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     public PlayerStates States => _states;
     public PlayerStatsSO Stats => _stats;
 
+    public GameObject RangeWeapon => _rangeWeaponPrefab;
+    public Transform SpawnPos => _weaponSpawnPos;
+
     #endregion
 
     #region --- Fields ---
@@ -112,6 +115,8 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     [SerializeField] private Animator _anim;
 
     [SerializeField] private Transform _baseSpawner;
+    [SerializeField] private GameObject _rangeWeaponPrefab;
+    [SerializeField] private Transform _weaponSpawnPos;
 
     private PlayerStateFactory _stateFactory;
     private PlayerStates _states;

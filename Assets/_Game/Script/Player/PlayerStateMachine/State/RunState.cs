@@ -10,7 +10,8 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
 
     public override void Enter() 
     {
-        if (!Ctrl.States.IsAttacking && Ctrl.States.IsGround)
+        if (Ctrl.States.IsAttacking || Ctrl.States.IsRangeAttacking) return;
+        if (Ctrl.States.IsGround)
             Ctrl.Anim.Play("Run");
     }
 
@@ -21,7 +22,10 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    public override void Exit() { }
+    public override void Exit() 
+    {
+        Ctrl.Rg2D.velocity = new Vector2(0, Ctrl.Rg2D.velocity.y);
+    }
 
     protected override void CheckSwitchState()
     {
@@ -35,6 +39,11 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
         if (Ctrl.States.IsAttacking)
         {
             SwitchState(Fac.MeleeAttackState());
+            return;
+        }
+        else if (Ctrl.States.IsRangeAttacking)
+        {
+            SwitchState(Fac.RangeAttackState());
             return;
         }
 

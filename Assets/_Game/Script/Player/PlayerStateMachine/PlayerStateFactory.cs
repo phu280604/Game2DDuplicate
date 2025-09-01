@@ -18,6 +18,7 @@ public class PlayerStateFactory
     public BaseState<PlayerController, PlayerStateFactory> FallState() => new FallState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> DeadState() => new DeadState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> MeleeAttackState() => new MeleeAttackState(_ctrl, this);
+    public BaseState<PlayerController, PlayerStateFactory> RangeAttackState() => new RangeAttackState(_ctrl, this);
 
     #endregion
 

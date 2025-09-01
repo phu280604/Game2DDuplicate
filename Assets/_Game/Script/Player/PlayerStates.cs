@@ -9,6 +9,7 @@ public class PlayerStates : States
     public bool IsJumping { get; set; } = false;
     public bool JumpTriggered { get; set; } = false;
     public bool IsAttacking { get; set; } = false;
+    public bool IsRangeAttacking { get; set; } = false;
     public bool AttackTriggered { get; set; } = false;
 
     #endregion

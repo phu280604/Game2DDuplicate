@@ -29,6 +29,14 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    public void GetButtonRangeAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed && _ctrl.States.IsGround)
+        {
+            _ctrl.States.IsRangeAttacking = true;
+        }
+    }
+
     #region --- Fields ---
 
     private PlayerController _ctrl;
