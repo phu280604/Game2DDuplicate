@@ -13,6 +13,7 @@ public static class NameLayer
     public const string MovingPlatform = "MovingPlatform";
 
     public const string HealthBar = "HealthBar";
+    public const string Coin = "Coin";
 
     #endregion
 }

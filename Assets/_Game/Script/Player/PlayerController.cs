@@ -24,7 +24,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         GetValueAnim();
 
         CurrentState.Execute();
-        //Debug.Log(CurrentState.GetType().Name);
+        Debug.Log(CurrentState.GetType().Name);
     }
 
     #endregion
@@ -78,8 +78,6 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         _states.IsGround = hit.collider != null;
         if(_states.IsGround)
         {
-            Debug.Log("Va chạm với: " + hit.collider.name + " trên layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
-
             if (hit.distance >= 1.6f)
             {
                 _states.JumpTriggered = false;

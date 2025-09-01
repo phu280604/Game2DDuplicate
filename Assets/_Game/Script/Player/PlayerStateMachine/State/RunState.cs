@@ -22,10 +22,7 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
         CheckSwitchState();
     }
 
-    public override void Exit() 
-    {
-        Ctrl.Rg2D.velocity = new Vector2(0, Ctrl.Rg2D.velocity.y);
-    }
+    public override void Exit() { }
 
     protected override void CheckSwitchState()
     {
