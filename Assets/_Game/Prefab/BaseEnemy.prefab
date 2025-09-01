@@ -114,6 +114,7 @@ MonoBehaviour:
   _rg2D: {fileID: 1232844308855783539}
   _col2D: {fileID: 2550005049559496662}
   _anim: {fileID: 5368904331760705266}
+  _baseEnemy: {fileID: 9033496251090305437}
   _detectTool: {fileID: 3496941089294183461}
   _groundLayerMask:
     serializedVersion: 2
@@ -160,7 +161,7 @@ GameObject:
   - component: {fileID: 5804927241588895593}
   - component: {fileID: 722918936537801812}
   - component: {fileID: 7237276766204779676}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3534243675861826404}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +350,7 @@ GameObject:
   - component: {fileID: 5593156203814273570}
   - component: {fileID: 588342027630000844}
   - component: {fileID: 4718265912240861574}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,9 +536,9 @@ GameObject:
   - component: {fileID: 8909502888729279799}
   - component: {fileID: 2715082415019242380}
   - component: {fileID: 6170750467818283584}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: HealthBar
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,9 +718,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4262283123457586513}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BaseEnemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

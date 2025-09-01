@@ -16,4 +16,4 @@ MonoBehaviour:
   _movementSpeed: 16
   _damage: 10
   _acceleration: 0
-  _jumpForce: 4
+  _jumpForce: 32

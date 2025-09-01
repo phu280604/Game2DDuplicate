@@ -8,6 +8,10 @@ public static class NameLayer
 
     public const string Player = "Player";
     public const string Enemy = "Enemy";
+
+    public const string Ground = "Ground";
+    public const string MovingPlatform = "MovingPlatform";
+
     public const string HealthBar = "HealthBar";
 
     #endregion

@@ -27,13 +27,19 @@ public class IdleState : BaseState<PlayerController, PlayerStateFactory>
 
     protected override void CheckSwitchState()
     {
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
         if (Ctrl.States.IsAttacking)
         {
             SwitchState(Fac.MeleeAttackState());
             return;
         }
 
-        if (!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.1f)
+        if (!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.01f)
         {
             SwitchState(Fac.FallState());
             return;

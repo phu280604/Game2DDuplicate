@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,7 +35,10 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     {
         // States.
         if(_states == null)
+        {
             _states = new PlayerStates();
+            _states.SavePoint = _baseSpawner.position;
+        }
         else
         {
             _states.OnInit(gameObject); 
@@ -64,18 +67,23 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
 
     private void IsGround()
     {
-        Vector3 point = gameObject.transform.localPosition;
+        Vector3 point = gameObject.transform.position;
         float length = 1.9f;
 
         Debug.DrawLine(point, point + Vector3.down * length, Color.green);
 
-        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, _groundLayerMask);
+        int layerMask = LayerMask.GetMask(NameLayer.Ground, NameLayer.MovingPlatform);
+        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, layerMask);
 
         _states.IsGround = hit.collider != null;
-
-        if (_states.IsGround)
+        if(_states.IsGround)
         {
-            _states.JumpTriggered = false;
+            Debug.Log("Va chạm với: " + hit.collider.name + " trên layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+
+            if (hit.distance >= 1.6f)
+            {
+                _states.JumpTriggered = false;
+            }
         }
     }
 
@@ -103,7 +111,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     [SerializeField] private Collider2D _col2D;
     [SerializeField] private Animator _anim;
 
-    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private Transform _baseSpawner;
 
     private PlayerStateFactory _stateFactory;
     private PlayerStates _states;
