@@ -25,11 +25,16 @@ public class FallState : BaseState<PlayerController, PlayerStateFactory>
 
     protected override void CheckSwitchState()
     {
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
         if (Mathf.Abs(Ctrl.States.Dir) > 0.1f)
             SwitchState(Fac.RunState());
         else if (Ctrl.States.IsGround)
             SwitchState(Fac.IdleState());
-
     }
 
     #endregion

@@ -13,7 +13,8 @@ public class JumpState : BaseState<PlayerController, PlayerStateFactory>
         Ctrl.Anim.Play("Jump");
         Ctrl.States.JumpTriggered = true;
 
-        JumpHandle();
+        if(Mathf.Abs(Ctrl.Rg2D.velocity.y) <= 0.01f)
+            JumpHandle();
     }
 
     public override void Execute()
@@ -28,7 +29,13 @@ public class JumpState : BaseState<PlayerController, PlayerStateFactory>
 
     protected override void CheckSwitchState()
     {
-        if(!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.1f)
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
+        if (!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.1f)
         {
             SwitchState(Fac.FallState());
             return;

@@ -25,6 +25,13 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
 
     protected override void CheckSwitchState()
     {
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
+
         if (Ctrl.States.IsAttacking)
         {
             SwitchState(Fac.MeleeAttackState());

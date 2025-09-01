@@ -27,7 +27,13 @@ public class MeleeAttackState: BaseState<PlayerController, PlayerStateFactory>
 
     protected override void CheckSwitchState()
     {
-        if(Ctrl.States.AttackTriggered)
+        if (Ctrl.States.IsDead)
+        {
+            SwitchState(Fac.DeadState());
+            return;
+        }
+
+        if (Ctrl.States.AttackTriggered)
             return;
 
         if (Mathf.Abs(Ctrl.States.Dir) > 0.1f)

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -67,19 +67,23 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
 
     private void IsGround()
     {
-        Vector3 point = gameObject.transform.localPosition;
+        Vector3 point = gameObject.transform.position;
         float length = 1.9f;
 
         Debug.DrawLine(point, point + Vector3.down * length, Color.green);
 
-        LayerMask mask = (1 << LayerMask.NameToLayer(NameLayer.Ground)) | (1 << LayerMask.NameToLayer(NameLayer.MovingPlatform));
-        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, mask);
+        int layerMask = LayerMask.GetMask(NameLayer.Ground, NameLayer.MovingPlatform);
+        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, layerMask);
 
         _states.IsGround = hit.collider != null;
-
-        if (_states.IsGround)
+        if(_states.IsGround)
         {
-            _states.JumpTriggered = false;
+            Debug.Log("Va chạm với: " + hit.collider.name + " trên layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+
+            if (hit.distance >= 1.6f)
+            {
+                _states.JumpTriggered = false;
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,23 +8,33 @@ public class MovingPlatform : MonoBehaviour
 
     private void Start()
     {
-        _dir = GetDirection(transform.position, _startPoint.position);
+        _target = _startPoint.transform;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        _rd2D.velocity = _speed * _dir;
+        transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
         if(SwitchAnchor(collision.gameObject, _startPoint.name))
-            _dir = GetDirection(transform.position, _endPoint.position);
+            _target = _endPoint.transform;
         else if (SwitchAnchor(collision.gameObject, _endPoint.name))
-            _dir = GetDirection(transform.position, _startPoint.position);
+            _target = _startPoint.transform;
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(NameLayer.Player))
+            collision.transform.SetParent(transform);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(NameLayer.Player))
+            collision.transform.SetParent(null);
+    }
 
     #endregion
 
@@ -32,19 +42,15 @@ public class MovingPlatform : MonoBehaviour
 
     private bool SwitchAnchor(GameObject target, string name) => target.name == name;
 
-    private Vector2 GetDirection(Vector2 startPoint, Vector2 endPoint) => new Vector2(endPoint.x - startPoint.x, endPoint.y - startPoint.y).normalized;
-
     #endregion
 
     #region --- Fields ---
 
-    [SerializeField] private Rigidbody2D _rd2D;
-
+    [SerializeField] private Transform _target;
     [SerializeField] private Transform _startPoint;
     [SerializeField] private Transform _endPoint;
 
     [SerializeField] private float _speed;
-    private Vector2 _dir;
 
     #endregion
 }
