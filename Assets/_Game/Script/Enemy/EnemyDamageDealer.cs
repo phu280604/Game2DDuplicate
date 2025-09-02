@@ -18,6 +18,8 @@ public class EnemyDamageDealerBase : DamageDealerBase<EnemyController>
 
         _ctrl.States.IsDead = CheckDeadFlag(_ctrl.Stats.CurrentHealthPoint);
         _ctrl.NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), _ctrl);
+
+        base.ReceiveDamage(dmg);
     }
 
     #endregion

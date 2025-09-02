@@ -180,6 +180,7 @@ Transform:
   - {fileID: 1990948528}
   - {fileID: 287960242}
   - {fileID: 1889072474}
+  - {fileID: 783680046}
   m_Father: {fileID: 999782304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &208936864
@@ -188,11 +189,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 936930059}
+    m_TransformParent: {fileID: 783680046}
     m_Modifications:
     - target: {fileID: 5269778903452078099, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_Name
-      value: Coin (2)
+      value: Coin #2
       objectReference: {fileID: 0}
     - target: {fileID: 7669567016300514262, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1702,11 +1703,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 936930059}
+    m_TransformParent: {fileID: 783680046}
     m_Modifications:
     - target: {fileID: 5269778903452078099, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_Name
-      value: Coin (4)
+      value: Coin #4
       objectReference: {fileID: 0}
     - target: {fileID: 7669567016300514262, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1785,6 +1786,42 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 619394802}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783680045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783680046}
+  m_Layer: 0
+  m_Name: Collecting_Coin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &783680046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783680045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2039569849}
+  - {fileID: 23435060}
+  - {fileID: 921234936}
+  - {fileID: 441284610}
+  - {fileID: 1981542862}
+  m_Father: {fileID: 54675568}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &817696033
 PrefabInstance:
@@ -1879,11 +1916,6 @@ Transform:
   m_Children:
   - {fileID: 8308411724943149181}
   - {fileID: 1419533004}
-  - {fileID: 2039569849}
-  - {fileID: 23435060}
-  - {fileID: 921234936}
-  - {fileID: 441284610}
-  - {fileID: 1981542862}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999782303
@@ -6869,11 +6901,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 936930059}
+    m_TransformParent: {fileID: 783680046}
     m_Modifications:
     - target: {fileID: 5269778903452078099, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_Name
-      value: Coin (1)
+      value: Coin #1
       objectReference: {fileID: 0}
     - target: {fileID: 7669567016300514262, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6977,11 +7009,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 936930059}
+    m_TransformParent: {fileID: 783680046}
     m_Modifications:
     - target: {fileID: 5269778903452078099, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_Name
-      value: Coin (3)
+      value: Coin #3
       objectReference: {fileID: 0}
     - target: {fileID: 7669567016300514262, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7950,11 +7982,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 936930059}
+    m_TransformParent: {fileID: 783680046}
     m_Modifications:
     - target: {fileID: 5269778903452078099, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_Name
-      value: Coin
+      value: Coin #0
       objectReference: {fileID: 0}
     - target: {fileID: 7669567016300514262, guid: c6fd2c5fa9f217b449c89fda930e822d, type: 3}
       propertyPath: m_LocalPosition.x

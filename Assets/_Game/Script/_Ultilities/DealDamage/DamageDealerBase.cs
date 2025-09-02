@@ -7,7 +7,11 @@ public abstract class DamageDealerBase<T> : MonoBehaviour
     #region --- Methods ---
 
     public abstract void DealDamage(GameObject target);
-    public abstract void ReceiveDamage(float dmg);
+    public virtual void ReceiveDamage(float dmg)
+    {
+        if (_hitVFX != null && _hitPosSpawnVFX != null)
+            Instantiate(_hitVFX, _hitPosSpawnVFX.transform.position, _hitPosSpawnVFX.transform.rotation).SetActive(true);
+    }
 
     protected bool CheckDeadFlag(float curHP)
     {
@@ -20,6 +24,9 @@ public abstract class DamageDealerBase<T> : MonoBehaviour
 
     [SerializeField] protected LayerMask _target;
     [SerializeField] protected T _ctrl;
+
+    [SerializeField] protected GameObject _hitVFX;
+    [SerializeField] protected Transform _hitPosSpawnVFX;
 
     #endregion
 }

@@ -13,7 +13,7 @@ public class PlayerDamageDealer : DamageDealerBase<PlayerController>
 
     public override void ReceiveDamage(float dmg)
     {
-        if(_ctrl.States.IsDead) return;
+        if (_ctrl.States.IsDead) return;
 
         _ctrl.Stats.CurrentHealthPoint -= dmg;
 
@@ -23,6 +23,8 @@ public class PlayerDamageDealer : DamageDealerBase<PlayerController>
             _ctrl.OnDespawn();
 
         _ctrl.NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), _ctrl);
+
+        base.ReceiveDamage(dmg);
     }
 
     #endregion

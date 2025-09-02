@@ -323,6 +323,7 @@ Transform:
   m_Children:
   - {fileID: 3964365876150110203}
   - {fileID: 3399002516148687104}
+  - {fileID: 5948352008034289561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &379173720014910225
@@ -527,6 +528,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _ctrl: {fileID: 5328948184166458999}
+  _hitVFX: {fileID: 4589651147768510420, guid: a830f8c3942ed6448a86fa573f704dbf, type: 3}
+  _hitPosSpawnVFX: {fileID: 5948352008034289561}
 --- !u!114 &4696266938745458141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,5 +651,36 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4307067207705127719}
+  m_Father: {fileID: 2163158619991790171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7859930646585428107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5948352008034289561}
+  m_Layer: 0
+  m_Name: HitVFXPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5948352008034289561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859930646585428107}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 2163158619991790171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
