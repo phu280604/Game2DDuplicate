@@ -6,5 +6,8 @@ public class EnemyStates : States
 {
     #region --- Properties ---
 
+    public GameObject Target { get; set; }
+    public bool AttackTriggered { get; set; }
+
     #endregion
 }

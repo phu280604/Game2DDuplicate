@@ -14,9 +14,13 @@ public class PlayerStatsSO : StatsSO
     public float RangeDamage => _rangeDamage;
     public float JumpForce => _jumpForce;
 
+    public float RespawnTime => _respawnTime;
+
     #endregion
 
     #region --- Fields ---
+    [SerializeField] private float _respawnTime;
+
     [SerializeField] private float _acceleration;
 
     [SerializeField] private float _jumpForce;

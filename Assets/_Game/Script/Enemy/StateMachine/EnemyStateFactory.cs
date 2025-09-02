@@ -14,6 +14,7 @@ public class EnemyStateFactory
 
     public BaseState<EnemyController, EnemyStateFactory> IdleState() => new EIdleState(_ctrl, this);
     public BaseState<EnemyController, EnemyStateFactory> PatrolState() => new EPatrolState(_ctrl, this);
+    public BaseState<EnemyController, EnemyStateFactory> AttackState() => new EAttackState(_ctrl, this);
     public BaseState<EnemyController, EnemyStateFactory> DeadState() => new EDeadState(_ctrl, this);
 
     #endregion

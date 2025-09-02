@@ -11,10 +11,13 @@ public class DeadState : BaseState<PlayerController, PlayerStateFactory>
     public override void Enter() 
     {
         Ctrl.Anim.Play("Dead");
+        _timer = Ctrl.Stats.RespawnTime;
     }
 
     public override void Execute() 
     {
+        RespawnCountDown();
+
         CheckSwitchState();
     }
 
@@ -29,6 +32,29 @@ public class DeadState : BaseState<PlayerController, PlayerStateFactory>
         }
 
     }
+
+    #endregion
+
+    #region --- Methods ---
+
+    private void RespawnCountDown()
+    {
+        if (_timer > 0f)
+            _timer -= Time.deltaTime;
+        else if (_timer <= 0f)
+            RespawnPlayer();
+    }
+
+    private void RespawnPlayer()
+    {
+        Ctrl.OnInit();
+    }
+
+    #endregion
+
+    #region --- Fields ---
+
+    private float _timer;
 
     #endregion
 }

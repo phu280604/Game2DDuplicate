@@ -23,7 +23,8 @@ public class EIdleState : BaseState<EnemyController, EnemyStateFactory>
 
     public override void Exit() 
     {
-        Ctrl.States.Dir *= -1;
+        if(Ctrl.States.Target == null)
+            Ctrl.States.Dir *= -1;
     }
 
     protected override void CheckSwitchState()
@@ -36,6 +37,20 @@ public class EIdleState : BaseState<EnemyController, EnemyStateFactory>
 
         if (time >= idleTime)
         {
+            if(Ctrl.States.Target != null)
+            {
+                Vector2 tarPos = Ctrl.States.Target.transform.position;
+                Vector2 curPos = Ctrl.transform.position;
+
+                float attackRange = Ctrl.Stats.AttackRange;
+
+                if (Vector2.Distance(tarPos, curPos) <= attackRange)
+                {
+                    SwitchState(Fac.AttackState());
+                    return;
+                }
+            }
+
             SwitchState(Fac.PatrolState());
         }
     }

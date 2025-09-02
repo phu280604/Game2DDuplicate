@@ -7,17 +7,26 @@ public class EnemyDetect : MonoBehaviour
 
     #region --- Methods ---
 
-    public bool OnDetecting(float detectRange, LayerMask layer)
+    public void OnDetecting(float detectRange, LayerMask layer, EnemyController ctrl)
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, detectRange, layer);
-        _detectRange= detectRange;
+
         if(hit != null)
         {
-            Debug.DrawLine(transform.position, hit.transform.position, Color.red);
-            return true;
+            Vector2 tarPos = hit.transform.position;
+            Vector2 curPos = ctrl.transform.position;
+
+            float dir = new Vector2(tarPos.x - curPos.x, tarPos.y - curPos.y).normalized.x;
+            
+            if(Mathf.Sign(dir) == Mathf.Sign(ctrl.States.Dir))
+            {
+                Debug.DrawLine(transform.position, hit.transform.position, Color.red);
+                ctrl.States.Target = hit.gameObject;
+                return;
+            } 
         }
 
-        return false;
+        ctrl.States.Target = null;
     }
 
     private void OnDrawGizmosSelected()
@@ -28,9 +37,4 @@ public class EnemyDetect : MonoBehaviour
 
     #endregion
 
-    #region --- Fields ---
-
-    private float _detectRange;
-
-    #endregion
 }

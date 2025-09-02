@@ -38,6 +38,20 @@ public class EPatrolState : BaseState<EnemyController, EnemyStateFactory>
             return;
         }
 
+        if(Ctrl.States.Target != null)
+        {
+            Vector2 tarPos = Ctrl.States.Target.transform.position;
+            Vector2 curPos = Ctrl.transform.position;
+
+            float attackRange = Ctrl.Stats.AttackRange;
+            
+            if (Vector2.Distance(tarPos, curPos) <= attackRange)
+            {
+                SwitchState(Fac.AttackState());
+                return;
+            }
+        }
+
         float checkLength = CheckLength();
         if (checkLength <= 0.3f)
         {

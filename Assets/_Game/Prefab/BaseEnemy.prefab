@@ -271,7 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 385581195711615706}
   - component: {fileID: 7213767472190403029}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: AttackHB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

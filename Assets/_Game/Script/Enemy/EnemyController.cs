@@ -20,11 +20,8 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
 
     private void FixedUpdate()
     {
-        bool tmp = _detectTool.OnDetecting(_stats.DetectRange, _targetLayer);
-        if(tmp)
-        {
-            Debug.Log("Detect Player");
-        }
+        _detectTool.OnDetecting(_stats.DetectRange, _targetLayer, this);
+        GetValueAnim();
 
         CurrentState.Execute();
     }
@@ -54,6 +51,11 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
         _fac = new EnemyStateFactory(this);
         CurrentState = _fac.IdleState();
         CurrentState.Enter();
+    }
+
+    private void GetValueAnim()
+    {
+        _states.AttackTriggered = _anim.GetBool("isAttack");
     }
 
     #endregion

@@ -25,6 +25,12 @@ public abstract class BaseState<T, U> where T : IStateController<BaseState<T, U>
         Ctrl.CurrentState = newState;
 
         Ctrl.CurrentState.Enter();
+        //string tmp = Ctrl.CurrentState.GetType().Name;
+        //if (tmp[0] == 'E')
+        //{
+        //    Debug.Log(tmp);
+        //}
+        
     }
 
     #endregion

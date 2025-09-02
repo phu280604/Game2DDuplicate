@@ -10,16 +10,18 @@ public class EnemyStatsSO : StatsSO
     public float MaxHealthPoint => _maxHealthPoint;
     public float MovementSpeed => _movementSpeed;
 
-    public float PatrolRange => patrolRange;
-    public float DetectRange => detectRange;
+    public float PatrolRange => _patrolRange;
+    public float DetectRange => _detectRange;
+    public float AttackRange => _attackRange;
     public float Damage => _damage;
 
     #endregion
 
     #region --- fields ---
 
-    [SerializeField] private float patrolRange;
-    [SerializeField] private float detectRange;
+    [SerializeField] private float _patrolRange;
+    [SerializeField] private float _detectRange;
+    [SerializeField] private float _attackRange;
 
     #endregion
 }
