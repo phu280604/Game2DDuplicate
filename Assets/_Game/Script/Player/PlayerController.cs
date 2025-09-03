@@ -21,6 +21,7 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
     private void FixedUpdate()
     {
         IsGround();
+        CanGliding();
         GetValueAnim();
 
         CurrentState.Execute();
@@ -78,11 +79,25 @@ public class PlayerController : BaseController<int, PlayerController>, IStateCon
         _states.IsGround = hit.collider != null;
         if(_states.IsGround)
         {
-            if (hit.distance >= 1.6f)
-            {
-                _states.JumpTriggered = false;
-            }
+            _states.CanGliding = false;
+            _states.JumpTriggered = false;
         }
+    }
+
+    public void CanGliding()
+    {
+        Vector3 point = gameObject.transform.position;
+        float length = 2.9f;
+
+        Debug.DrawLine(point, point + Vector3.down * length, Color.blue);
+
+        int layerMask = LayerMask.GetMask(NameLayer.Ground, NameLayer.MovingPlatform);
+        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.down, length, layerMask);
+
+        if (hit.collider == null)
+            _states.CanGliding = true;
+        else 
+            _states.CanGliding = false;
     }
 
     private void GetValueAnim()

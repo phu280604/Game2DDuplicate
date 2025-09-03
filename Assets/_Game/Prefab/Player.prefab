@@ -507,6 +507,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 94b25e68-3f74-4e8f-82cc-58e76e69e809
     m_ActionName: Player/RangeAttack[/Keyboard/k,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3552512262587230678}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: GetButtonSlide
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6229f58d-4c77-4b4e-9821-9f20554e566d
+    m_ActionName: Player/Slide[/Keyboard/l,/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -678,7 +694,7 @@ Transform:
   m_GameObject: {fileID: 7859930646585428107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7, y: -0.3, z: 0}
+  m_LocalPosition: {x: -1, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -15,6 +15,7 @@ public class PlayerStateFactory
     public BaseState<PlayerController, PlayerStateFactory> IdleState() => new IdleState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> RunState() => new RunState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> DashState() => new DashState(_ctrl, this);
+    public BaseState<PlayerController, PlayerStateFactory> GlideState() => new GlideState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> JumpState() => new JumpState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> FallState() => new FallState(_ctrl, this);
     public BaseState<PlayerController, PlayerStateFactory> DeadState() => new DeadState(_ctrl, this);

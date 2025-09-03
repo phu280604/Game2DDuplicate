@@ -19,6 +19,13 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && _ctrl.States.IsGround)
             _ctrl.States.IsJumping = true;
+        else if(context.performed && _ctrl.States.CanGliding)
+            _ctrl.States.IsGliding = true;
+        else if (context.canceled)
+        {
+            _ctrl.States.IsGliding = false;
+            _ctrl.States.IsJumping = false;
+        }
     }
 
     public void GetButtonSlide(InputAction.CallbackContext context)

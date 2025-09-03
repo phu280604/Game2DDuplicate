@@ -49,6 +49,12 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
             return;
         }
 
+        if (Ctrl.States.CanGliding && Ctrl.States.IsGliding)
+        {
+            SwitchState(Fac.GlideState());
+            return;
+        }
+
         if (!Ctrl.States.IsGround && Ctrl.Rg2D.velocity.y < 0.1f)
         {
             SwitchState(Fac.FallState());
