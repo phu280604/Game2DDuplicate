@@ -21,6 +21,20 @@ public class PlayerInput : MonoBehaviour
             _ctrl.States.IsJumping = true;
     }
 
+    public void GetButtonSlide(InputAction.CallbackContext context)
+    {
+        if (context.performed && Mathf.Abs(_ctrl.States.Dir) > 0f)
+        {
+            _ctrl.States.IsDashing = true;
+            Debug.Log(_ctrl.States.IsDashing);
+        }
+        
+        if(context.canceled && _ctrl.States.IsDashing)
+        {
+            _ctrl.States.IsDashing = false;
+        }
+    }
+
     public void GetButtonAttack(InputAction.CallbackContext context)
     {
         if (context.performed && _ctrl.States.IsGround)

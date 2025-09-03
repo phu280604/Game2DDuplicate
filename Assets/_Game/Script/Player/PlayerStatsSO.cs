@@ -15,11 +15,16 @@ public class PlayerStatsSO : StatsSO
     public float JumpForce => _jumpForce;
 
     public float RespawnTime => _respawnTime;
+    public float DashTime => _dashTime;
+    public float DashRange => _dashRange;
 
     #endregion
 
     #region --- Fields ---
+    [SerializeField] private float _dashRange;
+
     [SerializeField] private float _respawnTime;
+    [SerializeField] private float _dashTime;
 
     [SerializeField] private float _acceleration;
 

@@ -32,6 +32,11 @@ public class RunState : BaseState<PlayerController, PlayerStateFactory>
             return;
         }
 
+        if (Ctrl.States.IsDashing && Ctrl.States.IsGround)
+        {
+            SwitchState(Fac.DashState());
+            return;
+        }
 
         if (Ctrl.States.IsAttacking)
         {

@@ -15,7 +15,9 @@ MonoBehaviour:
   _maxHealthPoint: 100
   _movementSpeed: 16
   _damage: 24
+  _dashRange: 8
   _respawnTime: 3
+  _dashTime: 0.3
   _acceleration: 0
   _jumpForce: 32
   _rangeDamage: 20

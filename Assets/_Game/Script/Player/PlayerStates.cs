@@ -11,6 +11,7 @@ public class PlayerStates : States
     public bool IsAttacking { get; set; } = false;
     public bool IsRangeAttacking { get; set; } = false;
     public bool AttackTriggered { get; set; } = false;
+    public bool IsDashing { get; set; }
 
     #endregion
 }
