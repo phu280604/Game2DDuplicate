@@ -11,7 +11,7 @@ public class CollectingCoin : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer(NameLayer.Coin))
         {
             _ctrl.NotifyObserver(LayerMask.NameToLayer(NameLayer.Coin), _ctrl);
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 

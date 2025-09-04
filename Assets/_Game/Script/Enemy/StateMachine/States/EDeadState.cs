@@ -12,10 +12,15 @@ public class EDeadState : BaseState<EnemyController, EnemyStateFactory>
     public override void Enter()
     {
         Ctrl.Anim.Play("Dead");
+        
+        GameObject deadVFX = Resources.Load<GameObject>("Prefab/Dead_VFX");
+        SpawnerManager.Instance.OnSpawn(deadVFX, Ctrl.transform.position, deadVFX.transform.rotation);
     }
 
     public override void Execute()
     {
+        OnHide();
+
         CheckSwitchState();
     }
 
@@ -25,6 +30,20 @@ public class EDeadState : BaseState<EnemyController, EnemyStateFactory>
     {
         if (!Ctrl.States.IsDead)
             SwitchState(Fac.IdleState());
+    }
+
+    #endregion
+
+    #region --- Methods ---
+
+    private void OnHide()
+    {
+        bool hideTriggered = Ctrl.Anim.GetBool("canHide");
+        if (hideTriggered)
+        {
+            hideTriggered = false;
+            Ctrl.OnDespawn();
+        }
     }
 
     #endregion

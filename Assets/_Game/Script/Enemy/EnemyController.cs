@@ -30,7 +30,7 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
 
     #region --- Methods ---
 
-    private void OnInit()
+    public void OnInit()
     {
         // States.
         if (_states == null)
@@ -40,17 +40,23 @@ public class EnemyController : BaseController<int, EnemyController>, IStateContr
         }
         else
         {
-            _states.OnInit(_baseEnemy);
+            _states.OnInit(gameObject);
         }
 
         // Stats.
         _stats = Resources.Load<EnemyStatsSO>("EnemySO/EnemyStats");
         _stats.OnInit();
+        NotifyObserver(LayerMask.NameToLayer(NameLayer.HealthBar), this);
 
         // Finite State Machine.
         _fac = new EnemyStateFactory(this);
         CurrentState = _fac.IdleState();
         CurrentState.Enter();
+    }
+
+    public void OnDespawn()
+    {
+        _baseEnemy.SetActive(false);
     }
 
     private void GetValueAnim()

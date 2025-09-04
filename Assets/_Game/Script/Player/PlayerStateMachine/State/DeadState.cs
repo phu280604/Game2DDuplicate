@@ -12,6 +12,9 @@ public class DeadState : BaseState<PlayerController, PlayerStateFactory>
     {
         Ctrl.Anim.Play("Dead");
         _timer = Ctrl.Stats.RespawnTime;
+
+        GameObject deadVFX = Resources.Load<GameObject>("Prefab/Dead_VFX");
+        SpawnerManager.Instance.OnSpawn(deadVFX, Ctrl.transform.position, deadVFX.transform.rotation);
     }
 
     public override void Execute() 
@@ -48,6 +51,7 @@ public class DeadState : BaseState<PlayerController, PlayerStateFactory>
     private void RespawnPlayer()
     {
         Ctrl.OnInit();
+        GameManager.Instance.OnReset();
     }
 
     #endregion

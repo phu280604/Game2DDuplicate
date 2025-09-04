@@ -49,7 +49,6 @@ public class FlyingWeapon : MonoBehaviour
     {
         target.GetComponent<EnemyDamageDealerBase>()?.ReceiveDamage(_ctrl.Stats.RangeDamage);
         OnDeSpawn();
-        Debug.Log(target.name);
     }
 
     #endregion

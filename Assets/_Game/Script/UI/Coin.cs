@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour, IObserver<PlayerController>
     public void OnNotify(PlayerController value)
     {
         _amount++;
+        PlayerPrefs.SetInt("coin", _amount);
         _text.text = _amount.ToString();
     }
 
@@ -28,7 +29,7 @@ public class Coin : MonoBehaviour, IObserver<PlayerController>
 
     private void OnInit()
     {
-        _amount = 0;
+        _amount = PlayerPrefs.GetInt("coin", 0);
         _text.text = _amount.ToString();
         _player.AddObserver(LayerMask.NameToLayer(NameLayer.Coin), this);
     }
