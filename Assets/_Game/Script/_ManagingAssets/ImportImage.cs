@@ -13,10 +13,10 @@ public class ImportImage : AssetPostprocessor
             importer.textureType = TextureImporterType.Sprite;
 
             // Import sprite dạng Single
-            importer.spriteImportMode = SpriteImportMode.Multiple;
+            //importer.spriteImportMode = SpriteImportMode.Single;
 
             // Không dùng mipmap (2D không cần)
-            importer.mipmapEnabled = false;
+            //importer.mipmapEnabled = false;
 
             // Pixel art → dùng Point filter
             importer.filterMode = FilterMode.Point;

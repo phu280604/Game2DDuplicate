@@ -151,7 +151,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _ctrl: {fileID: 5525283269607463842}
-  _hitVFX: {fileID: 4589651147768510420, guid: a830f8c3942ed6448a86fa573f704dbf, type: 3}
   _hitPosSpawnVFX: {fileID: 201075763262512838}
 --- !u!1 &833322588042792289
 GameObject:
@@ -528,7 +527,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8125, y: 3.4296875}
+  m_Size: {x: 2.265625, y: 3.90625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

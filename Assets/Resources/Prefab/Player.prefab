@@ -403,8 +403,8 @@ MonoBehaviour:
   _rg2D: {fileID: 379173720014910225}
   _col2D: {fileID: 9205120235452579891}
   _anim: {fileID: 103196110197705689}
-  _baseSpawner: {fileID: 0}
   _rangeWeaponPrefab: {fileID: 1296487777766610098}
+  _baseSpawner: {fileID: 0}
   _weaponSpawnPos: {fileID: 3399002516148687104}
 --- !u!114 &3552512262587230678
 MonoBehaviour:
@@ -544,7 +544,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _ctrl: {fileID: 5328948184166458999}
-  _hitVFX: {fileID: 4589651147768510420, guid: a830f8c3942ed6448a86fa573f704dbf, type: 3}
   _hitPosSpawnVFX: {fileID: 5948352008034289561}
 --- !u!114 &4696266938745458141
 MonoBehaviour:
